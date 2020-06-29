@@ -36,18 +36,43 @@ main ()
 {
 
     int default_number_samples = 100000;
-    float default_leaf_size = 1.0f;         // downsampling Voxelgrid size
+    float default_leaf_size = 1.0f;         // downsampling Voxelgrid size, unit is mm
     bool write_normals = true;  // true:write normals, false:don't write normals
     bool vis_result = true;     // vislization result
     bool showCoordinateSystem = false;
-    std::string inputFile = "/media/yumi/Datas/Mesh/b1.OBJ";
-    std::string outputFile = "/home/yumi/Desktop/SampleDate/b1.ply";
-    bool INTER_VIS = true;
+    std::string inputFile = "/home/yumi/Downloads/DexNet_Mesh/adversarial/bar_clamp.obj";
+    std::string outputFile = "/home/yumi/Desktop/SampleDate/bar_clamp0629.ply";
+    bool INTER_VIS = false;
 
-    // Parse command line arguments
+    enum Unit {mm, cm, dm, m};
+    Unit unit;
+    unit = m;          //set unit of mesh files, unit of output pointcloud is same as input
+
+    float scale;
+    switch (unit) {
+    case mm:
+        scale = 1.0f;
+        print_info("unit is mm.\n");
+        break;
+    case cm:
+        scale = 0.1f;
+        print_info("unit is cm.\n");
+        break;
+    case dm:
+        scale = 0.01f;
+        print_info("unit is dm.\n");
+        break;
+    case m:
+        scale = 0.001f;
+        print_info("unit is m.\n");
+        break;
+    default:
+        print_error("Place set mesh unit in mm/cm/dm/m!");
+        break;
+    }
+
     int SAMPLE_POINTS_ = default_number_samples;
-
-    float leaf_size = default_leaf_size;
+    float leaf_size = default_leaf_size*scale;
 
 
     std::string::size_type idx_ply, idx_obj, idx_OBJ;
@@ -99,7 +124,7 @@ main ()
       if(showCoordinateSystem)
       {
               vis.setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 1);
-              vis.addCoordinateSystem(20.0);
+              vis.addCoordinateSystem(20.0f*scale);
               vis.initCameraParameters();
       }
       vis.spin ();
@@ -113,11 +138,11 @@ main ()
       visualization::PCLVisualizer vis_sampled;
       vis_sampled.addPointCloud<pcl::PointNormal> (cloud_1);
       if (write_normals)
-        vis_sampled.addPointCloudNormals<pcl::PointNormal> (cloud_1, 1, 5.0f, "cloud_normals");
+        vis_sampled.addPointCloudNormals<pcl::PointNormal> (cloud_1, 1, 5.0f*scale, "cloud_normals");
       if(showCoordinateSystem)
       {
               vis_sampled.setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 1);
-              vis_sampled.addCoordinateSystem(20.0);
+              vis_sampled.addCoordinateSystem(20.0*scale);
               vis_sampled.initCameraParameters();
       }
       vis_sampled.spin ();
@@ -137,13 +162,13 @@ main ()
       vis3.addPointCloud<pcl::PointNormal> (voxel_cloud);
       if (write_normals)
       {
-        vis3.addPointCloudNormals<pcl::PointNormal> (voxel_cloud, 1, 5.0f, "cloud_normals");
+        vis3.addPointCloudNormals<pcl::PointNormal> (voxel_cloud, 1, 5.0f*scale, "cloud_normals");
       }
 
       if(showCoordinateSystem)
       {
               vis3.setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 1);
-              vis3.addCoordinateSystem(20.0);
+              vis3.addCoordinateSystem(20.0*scale);
               vis3.initCameraParameters();
       }
 
