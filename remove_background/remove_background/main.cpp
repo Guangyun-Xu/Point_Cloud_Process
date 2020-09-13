@@ -14,8 +14,8 @@ int main()
     // 1.load point cloud
     pcl::PointCloud<pcl::PointXYZ>::Ptr background_cloud(new pcl::PointCloud<pcl::PointXYZ>());
     pcl::PointCloud<pcl::PointXYZ>::Ptr scene_cloud(new pcl::PointCloud<pcl::PointXYZ>());
-    std::string background_path ="/home/yumi/Desktop/SampleDate/0902/background.ply";
-    std::string scene_path = "/home/yumi/Desktop/SampleDate/0902/scene.ply";
+    std::string background_path ="/home/yumi/Desktop/SampleDate/0909/background.ply";
+    std::string scene_path = "/home/yumi/Desktop/SampleDate/0909/scene.ply";
     pcl::io::loadPLYFile(background_path, *background_cloud);
     pcl::io::loadPLYFile(scene_path, *scene_cloud);
 
@@ -54,7 +54,7 @@ int main()
     sor.filter (*foreground);
 
     // 6.save
-    std::string foreground_path = "/home/yumi/Desktop/SampleDate/0902/foreground.pcd";
+    std::string foreground_path = "/home/yumi/Desktop/SampleDate/0909/foreground.pcd";
     pcl::PCDWriter writer_pcd;
     writer_pcd.write(foreground_path, *foreground);
 
