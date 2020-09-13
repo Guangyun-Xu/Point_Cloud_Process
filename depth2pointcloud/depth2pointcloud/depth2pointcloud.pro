@@ -15,4 +15,16 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-        main.cpp
+        main.cpp \
+
+INCLUDEPATH+=/usr/local/include/pcl-1.9\
+/usr/include/eigen3\
+/usr/local/include/vtk-7.1\
+/usr/include/flann\
+/usr/local/include/opencv
+
+LIBS+=/usr/local/lib/libpcl_*.so\
+-lboost_system\
+-lrt\
+/usr/local/lib/libvtk*.so\
+/usr/local/lib/libopencv_*
