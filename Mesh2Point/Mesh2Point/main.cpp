@@ -40,13 +40,13 @@ main ()
     bool write_normals = true;  // true:write normals, false:don't write normals
     bool vis_result = true;     // vislization result
     bool showCoordinateSystem = false;
-    std::string inputFile = "/home/yumi/Downloads/DexNet_Mesh/adversarial/bar_clamp.obj";
-    std::string outputFile = "/home/yumi/Desktop/SampleDate/bar_clamp0629.ply";
+    std::string inputFile = "/home/yumi/Share/haonan/src/obj_000017.ply";
+    std::string outputFile = "/home/yumi/Share/haonan/obj_000017_pc.ply";
     bool INTER_VIS = false;
 
     enum Unit {mm, cm, dm, m};
     Unit unit;
-    unit = m;          //set unit of mesh files, unit of output pointcloud is same as input
+    unit = mm;          //set unit of mesh files, unit of output pointcloud is same as input
 
     float scale;
     switch (unit) {
