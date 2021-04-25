@@ -57,4 +57,4 @@ Thumbs.db
 *.opensdf
 *.vcxproj
 *vcxproj.*
-/rgbd2pointcloud/.idea/
+/PyCode/rgbd2pointcloud/.idea/
