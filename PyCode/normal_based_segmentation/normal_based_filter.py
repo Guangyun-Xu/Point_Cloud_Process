@@ -43,7 +43,7 @@ if __name__ == '__main__':
     target_orientation = [0, 0, 1]
     threshold = 0.1
 
-    mesh_path = "../mesh2pointcloud/Data/61003522db216mb-600001.obj"
+    mesh_path = "../mesh2pointcloud/Data/OBJ/135MC/db135-300-6.obj"
     mesh = o3d.io.read_triangle_mesh(mesh_path)
 
     pc = mesh2pc.mesh_2_pc(mesh, 10000, 'uniformly', True)  # mesh to pointcloud
